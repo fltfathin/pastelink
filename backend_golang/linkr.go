@@ -22,6 +22,7 @@ func redirect(c *gin.Context) {
 			"item": link,
 			"dude": "awesome",
 		})
+		return
 	}
 }
 
