@@ -6,19 +6,29 @@ fn index() -> &'static str {
     "Hello, world!"
 }
 
+#[get("/about")]
+fn about() -> String {
+    return format!("link for");
+}
+
 #[get("/l/<shortlink>")]
 fn redirect(shortlink: String) -> String {
     return format!("link for {}", shortlink);
 }
 
-#[get("/links")]
-fn links() -> String {
+#[get("/shortlinks")]
+fn shortlinks() -> String {
     return format!("link for");
 }
 
-#[post("/links")]
+#[post("/shortlinks")]
 fn linkpost() -> String {
     return format!("post thiz lelz");
+}
+
+#[get("/shortlinks/<id>/delete")]
+fn delete_shortlink(id: String) -> String {
+    return format!("link for");
 }
 
 fn main() {
@@ -26,7 +36,7 @@ fn main() {
         .mount("/", routes![
             index, 
             redirect, 
-            links, 
+            shortlinks, 
             linkpost])
     .launch();
 }
