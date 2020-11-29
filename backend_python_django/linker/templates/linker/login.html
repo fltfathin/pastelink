@@ -1,0 +1,35 @@
+{% extends 'linker/base.html' %}
+
+{% block body %}
+<div class="hero is-fullheight-with-navbar">
+    <div class="hero-body">
+    <div class="container">
+        <div class="columns is-centered">
+            <div id="login" class="column box is-4 has-text-centered">
+                <h1 class="title">Login</h1>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="field">
+                        <div class="control">
+                            <input class="input is-primary" type="text" name="username" placeholder="username">
+                        </div>  
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input is-primary" type="password" name="password" placeholder="password">
+                        </div>
+                    </div>
+                    <div class="field">
+                    <button type="submit" class="button is-fullwidth">login</button>
+                    </div>
+                    <div class="field">
+                    <a class="button is-fullwidth" href="{{github_url}}">login using github</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+{% endblock body %}

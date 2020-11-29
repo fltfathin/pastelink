@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+</head>
+<body>
+{% include "linker/partials/navbar.html" %}
+<div style="min-height:75vh">
+{% block body %}
+uwu
+{% endblock body %}
+</div>
+
+{% include "linker/partials/footer.html" %}
+</body>

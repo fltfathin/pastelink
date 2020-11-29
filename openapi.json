@@ -1,0 +1,121 @@
+{
+    "openapi":"3.0.3",
+    "info":{
+        "title": "pastelink api",
+        "description": "api to pastelink, used to create and manage links",
+        "contact":{
+            "name":"Fathin Luqman Tantowi",
+            "url":"github.com/fltfathin",
+            "email": "fltfathin@gmail.com"
+        },
+        "license": {
+            "name": "MIT License",
+            "url": "https://github.com/fltfathin/pastelink/blob/main/LICENSE"
+        },
+        "version": "0.0.1"
+    },
+    "servers": [
+        {"url": "localhost:9000/golang/",
+        "description": "golang backend"}
+    ],
+    "components": {
+        "schemas": {
+            "link":{
+                "type": "object",
+                "required": ["shortlink", "is_redirect", "payload"],
+                "properties": {
+                    "shortlink":{
+                        "type": "string"
+                    },
+                    "is_redirect":{
+                        "type": "boolean"
+                    },
+                    "payload":{
+                        "type": "string"
+                    }
+                },
+                "example":{
+                    "shortlink":"epiclink",
+                    "is_redirect":true,
+                    "payload":"https://github.com/fltfathin/"
+                }
+            },
+            "status":{
+                "type": "object",
+                "properties": {
+                    "success":{
+                        "type": "boolean"
+                    }
+                }
+            }
+        },
+        "parameters": {
+            
+        },
+        "responses": {
+            "response_status":{
+                "description": "status",
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "$ref":"#/components/schemas/status"
+                        }
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            
+        },
+        "callbacks": {
+
+        }
+    },
+    "paths": {
+        "/l/{shortlink}":{
+            "get":{
+                "description": "",
+                "responses": {
+                    "304":{
+                        "description": "redirect to the actual link"
+                    },
+                    "200":{
+                        "description": "aww"
+                    }
+                }
+            }
+        },
+        "/links/":{
+            "get":{
+                "description": "get links with or without query",
+                "responses": {
+                    "200": {
+                       "description": "list of links",
+                       "content": {
+                           "application/json":{
+                               "schema":{
+                                   "type": "array",
+                                   "items":{
+                                       "$ref":"#/components/schemas/link"
+                                   }
+                               }
+                           }
+                       } 
+                    }
+                }
+            },
+            "post":{
+                "description": "post a new link",
+                "responses": {
+                    "200": {
+                       "description": "success posting",
+                       "$ref": "#/components/responses/response_status"
+                    }
+                },
+                "parameters": [
+                    
+                ]
+            }
+        }
+    }
+}

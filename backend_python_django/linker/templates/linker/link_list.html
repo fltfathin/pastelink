@@ -1,0 +1,48 @@
+{% extends 'linker/base.html' %}
+
+{% block body %}
+<div class="container is-max-desktop">
+<div class="section">
+<form action="" method="post">
+{% csrf_token %}
+<div class="field has-addons has-addons-right">
+  <div class="control is-expanded">
+    <input class="input" type="text" name="url" placeholder="url">
+  </div>
+  <div class="control">
+    <input class="input" type="text" name="shortlink" placeholder="shortlink">
+  </div>
+  <div class="control">
+    <button class="button is-primary" type="submit">pendekkan</button>
+  </div>
+</div>
+  {% if error %}
+  <div class="notification is-danger">
+  {{error}}
+  </div>
+  {% endif %}
+
+
+</form>
+</div>
+<div class="section">
+<table class="table is-bordered is-fullwidth">
+<thead>
+<th>shortlink</th>
+<th>url</th>
+<th>actions</th>
+</thead>
+<tbody>
+{% for link in links %}
+<tr style="vertical-align:middle">
+<td><a href="/l/{{link.shortlink}}">{{request.get_host}}/l/{{link.shortlink}}</a></td>
+<td>{{link.url}}</td>
+<td><a href="{% url 'delete_link' link.id %}" class="is-danger">delete</a></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+
+{% endblock body %}
