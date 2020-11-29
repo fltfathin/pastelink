@@ -89,9 +89,9 @@ def oauth_callback(request):
     code = request.GET.get("code")
     if code is not None:
         params = {
-            "client_id": "6c8a998f2fc6a1cac9bc",
+            "client_id": "secret",
             "code": code,
-            "client_secret":"715a2d2ce564afad1906d0647ad12add77793dd9",
+            "client_secret":"secret",
             "redirect_uri":"http://localhost:8000/login/oauth_callback",
         }
         headers= {
